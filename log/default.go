@@ -9,12 +9,12 @@ import (
 )
 
 type Logger interface {
-	LogCritical(a ...interface{})
-	LogError(a ...interface{})
-	LogWarn(a ...interface{})
-	LogInfo(a ...interface{})
-	LogVerbose(a ...interface{})
-	LogDebug(a ...interface{})
+	Critical(a ...interface{})
+	Error(a ...interface{})
+	Warn(a ...interface{})
+	Info(a ...interface{})
+	Verbose(a ...interface{})
+	Debug(a ...interface{})
 }
 
 const (
@@ -60,34 +60,34 @@ func getLogger() Logger {
 	return globalLogger
 }
 
-func LogInfo(a ...interface{}) {
+func Info(a ...interface{}) {
 	logger := getLogger()
-	logger.LogInfo(a...)
+	logger.Info(a...)
 }
 
-func LogDebug(a ...interface{}) {
+func Debug(a ...interface{}) {
 	logger := getLogger()
-	logger.LogDebug(a...)
+	logger.Debug(a...)
 }
 
-func LogWarn(a ...interface{}) {
+func Warn(a ...interface{}) {
 	logger := getLogger()
-	logger.LogWarn(a...)
+	logger.Warn(a...)
 }
 
-func LogError(a ...interface{}) {
+func Error(a ...interface{}) {
 	logger := getLogger()
-	logger.LogError(a...)
+	logger.Error(a...)
 }
 
 func LogVerbose(a ...interface{}) {
 	logger := getLogger()
-	logger.LogVerbose(a...)
+	logger.Verbose(a...)
 }
 
 func LogCritical(a ...interface{}) {
 	logger := getLogger()
-	logger.LogCritical(a...)
+	logger.Critical(a...)
 }
 
 // Default logging implementation. You can replace this logging module by another implementation
@@ -109,27 +109,27 @@ func newDefaultLogger() *DefaultLogger {
 	}
 }
 
-func (logger *DefaultLogger) LogInfo(a ...interface{}) {
+func (logger *DefaultLogger) Info(a ...interface{}) {
 	logger.printWithTime(nil, a...)
 }
 
-func (logger *DefaultLogger) LogDebug(a ...interface{}) {
+func (logger *DefaultLogger) Debug(a ...interface{}) {
 	logger.printWithTime(logger.debugColor, a...)
 }
 
-func (logger *DefaultLogger) LogWarn(a ...interface{}) {
+func (logger *DefaultLogger) Warn(a ...interface{}) {
 	logger.printWithTime(logger.warningColor, a...)
 }
 
-func (logger *DefaultLogger) LogError(a ...interface{}) {
+func (logger *DefaultLogger) Error(a ...interface{}) {
 	logger.printWithTime(logger.errorColor, a...)
 }
 
-func (logger *DefaultLogger) LogVerbose(a ...interface{}) {
+func (logger *DefaultLogger) Verbose(a ...interface{}) {
 	logger.printWithTime(logger.verboseColor, a...)
 }
 
-func (logger *DefaultLogger) LogCritical(a ...interface{}) {
+func (logger *DefaultLogger) Critical(a ...interface{}) {
 	logger.printWithTime(nil, a...)
 }
 
