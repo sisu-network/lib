@@ -80,12 +80,12 @@ func Error(a ...interface{}) {
 	logger.Error(a...)
 }
 
-func LogVerbose(a ...interface{}) {
+func Verbose(a ...interface{}) {
 	logger := getLogger()
 	logger.Verbose(a...)
 }
 
-func LogCritical(a ...interface{}) {
+func Critical(a ...interface{}) {
 	logger := getLogger()
 	logger.Critical(a...)
 }
