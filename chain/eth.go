@@ -1,7 +1,6 @@
 package chain
 
 import (
-	"fmt"
 	"math/big"
 
 	etypes "github.com/ethereum/go-ethereum/core/types"
@@ -17,26 +16,6 @@ var (
 	}
 	ethSigners map[string]etypes.Signer
 )
-
-func init() {
-	initSigners()
-
-	// Do Sanity checking to make sure that our functions do not miss any chain.
-	for chain, _ := range ETH_CHAINS {
-		id := GetChainIntFromId(chain)
-		if id == nil {
-			panic(fmt.Errorf("Cannot get chain id from %s", chain))
-		}
-
-		if !IsETHBasedChain(chain) {
-			panic(fmt.Errorf("Chain %s is not an ETH based chain", chain))
-		}
-
-		if ethSigners[chain] == nil {
-			panic(fmt.Errorf("There is no signer for chain %s", chain))
-		}
-	}
-}
 
 func initSigners() {
 	ethSigners = make(map[string]etypes.Signer)
@@ -74,4 +53,13 @@ func IsETHBasedChain(chain string) bool {
 
 func GetEthChainSigner(chain string) etypes.Signer {
 	return ethSigners[chain]
+}
+
+func GetSupportedEthChains() map[string]bool {
+	newMap := make(map[string]bool)
+	for k, v := range ETH_CHAINS {
+		newMap[k] = v
+	}
+
+	return newMap
 }
