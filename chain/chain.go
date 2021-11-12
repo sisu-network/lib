@@ -39,6 +39,8 @@ func init() {
 }
 
 func initSigners() {
+	ethSigners = make(map[string]etypes.Signer)
+
 	ethSigners["eth"] = etypes.NewEIP2930Signer(GetChainIntFromId("eth"))
 	ethSigners["sisu-eth"] = etypes.NewEIP2930Signer(GetChainIntFromId("sisu-eth"))
 	ethSigners["ganache1"] = etypes.NewEIP2930Signer(GetChainIntFromId("ganache1"))
