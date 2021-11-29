@@ -8,6 +8,9 @@ import (
 	"github.com/fatih/color"
 )
 
+// Ensure struct implements interface at compile-time
+var _ Logger = (*DefaultLogger)(nil)
+
 type Logger interface {
 	Critical(a ...interface{})
 	Error(a ...interface{})
@@ -15,15 +18,19 @@ type Logger interface {
 	Info(a ...interface{})
 	Verbose(a ...interface{})
 	Debug(a ...interface{})
+	Errorf(template string, a ...interface{})
+	Warnf(template string, a ...interface{})
+	Infof(template string, a ...interface{})
+	Debugf(template string, a ...interface{})
 }
 
 const (
-	LOG_LEVEL_DEBUG    = 1
-	LOG_LEVEL_VERBOSE  = 10
-	LOG_LEVEL_INFO     = 20
-	LOG_LEVEL_WARN     = 30
-	LOG_LEVEL_ERROR    = 40
-	LOG_LEVEL_CRITICAL = 50
+	LOG_LEVEL_DEBUG = iota + 1
+	LOG_LEVEL_VERBOSE
+	LOG_LEVEL_INFO
+	LOG_LEVEL_WARN
+	LOG_LEVEL_ERROR
+	LOG_LEVEL_CRITICAL
 )
 
 var globalLogger Logger
@@ -90,6 +97,26 @@ func Critical(a ...interface{}) {
 	logger.Critical(a...)
 }
 
+func Infof(template string, a ...interface{}) {
+	logger := getLogger()
+	logger.Infof(template, a...)
+}
+
+func Debugf(template string, a ...interface{}) {
+	logger := getLogger()
+	logger.Debugf(template, a...)
+}
+
+func Warnf(template string, a ...interface{}) {
+	logger := getLogger()
+	logger.Warnf(template, a...)
+}
+
+func Errorf(template string, a ...interface{}) {
+	logger := getLogger()
+	logger.Errorf(template, a...)
+}
+
 // Default logging implementation. You can replace this logging module by another implementation
 // of Logger interface.
 
@@ -110,39 +137,68 @@ func newDefaultLogger() *DefaultLogger {
 }
 
 func (logger *DefaultLogger) Info(a ...interface{}) {
-	logger.printWithTime(nil, a...)
+	logger.printWithTime(nil, "", a...)
 }
 
 func (logger *DefaultLogger) Debug(a ...interface{}) {
-	logger.printWithTime(logger.debugColor, a...)
+	logger.printWithTime(logger.debugColor, "", a...)
 }
 
 func (logger *DefaultLogger) Warn(a ...interface{}) {
-	logger.printWithTime(logger.warningColor, a...)
+	logger.printWithTime(logger.warningColor, "", a...)
 }
 
 func (logger *DefaultLogger) Error(a ...interface{}) {
-	logger.printWithTime(logger.errorColor, a...)
+	logger.printWithTime(logger.errorColor, "", a...)
 }
 
 func (logger *DefaultLogger) Verbose(a ...interface{}) {
-	logger.printWithTime(logger.verboseColor, a...)
+	logger.printWithTime(logger.verboseColor, "", a...)
 }
 
 func (logger *DefaultLogger) Critical(a ...interface{}) {
-	logger.printWithTime(nil, a...)
+	logger.printWithTime(nil, "", a...)
 }
 
-func (logger *DefaultLogger) printWithTime(c *color.Color, a ...interface{}) {
+func (logger *DefaultLogger) Infof(template string, a ...interface{}) {
+	logger.printWithTime(nil, template, a...)
+}
+
+func (logger *DefaultLogger) Debugf(template string, a ...interface{}) {
+	logger.printWithTime(logger.debugColor, template, a...)
+}
+
+func (logger *DefaultLogger) Warnf(template string, a ...interface{}) {
+	logger.printWithTime(logger.warningColor, template, a...)
+}
+
+func (logger *DefaultLogger) Errorf(template string, a ...interface{}) {
+	logger.printWithTime(logger.errorColor, template, a...)
+}
+
+func (logger *DefaultLogger) printWithTime(c *color.Color, template string, a ...interface{}) {
 	now := time.Now().Format("15:04:05.00")
-
-	var m []interface{}
-	m = append(m, now)
-	m = append(m, a...)
-
+	msg := getMessage(template, a...)
 	if c == nil {
-		fmt.Println(m...)
+		fmt.Println(now, msg)
 	} else {
-		c.Println(m...)
+		c.Println(now, msg)
 	}
+}
+
+func getMessage(template string, fmtArgs ...interface{}) string {
+	if len(fmtArgs) == 0 {
+		return template
+	}
+
+	if len(template) > 0 {
+		return fmt.Sprintf(template, fmtArgs...)
+	}
+
+	if len(fmtArgs) == 1 {
+		if str, ok := fmtArgs[0].(string); ok {
+			return str
+		}
+	}
+	return fmt.Sprint(fmtArgs...)
 }
