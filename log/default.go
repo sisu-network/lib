@@ -22,6 +22,7 @@ type Logger interface {
 	Warnf(template string, a ...interface{})
 	Infof(template string, a ...interface{})
 	Debugf(template string, a ...interface{})
+	Verbosef(template string, a ...interface{})
 }
 
 const (
@@ -117,6 +118,11 @@ func Errorf(template string, a ...interface{}) {
 	logger.Errorf(template, a...)
 }
 
+func Verbosef(template string, a ...interface{}) {
+	logger := getLogger()
+	logger.Verbosef(template, a...)
+}
+
 // Default logging implementation. You can replace this logging module by another implementation
 // of Logger interface.
 
@@ -174,6 +180,10 @@ func (logger *DefaultLogger) Warnf(template string, a ...interface{}) {
 
 func (logger *DefaultLogger) Errorf(template string, a ...interface{}) {
 	logger.printWithTime(logger.errorColor, template, a...)
+}
+
+func (logger *DefaultLogger) Verbosef(template string, a ...interface{}) {
+	logger.printWithTime(logger.verboseColor, template, a...)
 }
 
 func (logger *DefaultLogger) printWithTime(c *color.Color, template string, a ...interface{}) {
