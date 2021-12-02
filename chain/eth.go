@@ -71,3 +71,19 @@ func GetSupportedEthChains() map[string]bool {
 
 	return newMap
 }
+
+func GetKeygenType(chain string) string {
+	if IsETHBasedChain(chain) {
+		return KEY_TYPE_ECDSA
+	}
+
+	return ""
+}
+
+func GetKeyTypeForChain(chain string) string {
+	if IsETHBasedChain(chain) {
+		return KEY_TYPE_ECDSA
+	}
+
+	return ""
+}
