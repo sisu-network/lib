@@ -9,12 +9,11 @@ import (
 
 var (
 	ETH_CHAINS = map[string]bool{
-		"eth":              true,
-		"eth-ropsten":      true,
-		"eth-sisu-local":   true,
-		"eth-sisu-testnet": true,
-		"ganache1":         true,
-		"ganache2":         true,
+		"eth":                 true,
+		"eth-ropsten":         true,
+		"eth-binance-testnet": true,
+		"ganache1":            true,
+		"ganache2":            true,
 	}
 	ethSigners map[string]etypes.Signer
 )
@@ -24,8 +23,7 @@ func initSigners() {
 
 	ethSigners["eth"] = etypes.NewEIP2930Signer(GetChainIntFromId("eth"))
 	ethSigners["eth-ropsten"] = etypes.NewEIP2930Signer(GetChainIntFromId("eth-ropsten"))
-	ethSigners["eth-sisu-local"] = etypes.NewEIP2930Signer(GetChainIntFromId("eth-sisu-local"))
-	ethSigners["eth-sisu-testnet"] = etypes.NewEIP2930Signer(GetChainIntFromId("eth-sisu-testnet"))
+	ethSigners["eth-binance-testnet"] = etypes.NewEIP2930Signer(GetChainIntFromId("eth-binance-testnet"))
 	ethSigners["ganache1"] = etypes.NewEIP2930Signer(GetChainIntFromId("ganache1"))
 	ethSigners["ganache2"] = etypes.NewEIP2930Signer(GetChainIntFromId("ganache2"))
 }
@@ -36,10 +34,8 @@ func GetChainIntFromId(chain string) *big.Int {
 		return big.NewInt(1)
 	case "eth-ropsten":
 		return big.NewInt(3)
-	case "eth-sisu-local":
-		return big.NewInt(314767)
-	case "eth-sisu-testnet":
-		return big.NewInt(314777)
+	case "eth-binance-testnet":
+		return big.NewInt(97)
 	case "ganache1":
 		return big.NewInt(189985)
 	case "ganache2":
@@ -52,7 +48,7 @@ func GetChainIntFromId(chain string) *big.Int {
 
 func IsETHBasedChain(chain string) bool {
 	switch chain {
-	case "eth", "eth-ropsten", "eth-sisu-local", "eth-sisu-testnet", "ganache1", "ganache2":
+	case "eth", "eth-ropsten", "eth-binance-testnet", "ganache1", "ganache2":
 		return true
 	}
 
