@@ -10,6 +10,14 @@ const levelVerbose = "verbose"
 
 var _ Logger = (*DNALogger)(nil)
 
+type LogDNAConfig struct {
+	Secret        string   `toml:"secret"`
+	AppName       string   `toml:"app_name"`
+	HostName      string   `toml:"host_name"`
+	FlushInterval duration `toml:"flush_interval"`
+	MaxBufferLen  int      `toml:"max_buffer_len"`
+}
+
 type DNALogger struct {
 	logger *logger.Logger
 }
