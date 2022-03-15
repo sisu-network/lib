@@ -1,8 +1,7 @@
 package log
 
-import "fmt"
-
 import (
+	"fmt"
 	"sync"
 	"time"
 
@@ -25,6 +24,14 @@ var globalLogger Logger
 var logLevel int
 var loggerLock = &sync.RWMutex{}
 
+func init() {
+	loggerLock.Lock()
+	defer loggerLock.Unlock()
+
+	globalLogger = newDefaultLogger()
+	logLevel = LOG_LEVEL_INFO
+}
+
 func SetLogger(logger Logger) {
 	loggerLock.Lock()
 	defer loggerLock.Unlock()
@@ -41,16 +48,7 @@ func SetLogLevel(level int) {
 
 func getLogger() Logger {
 	loggerLock.RLock()
-
-	if globalLogger == nil {
-		// Release the lock so that it could be locked again in the set functions
-		loggerLock.RUnlock()
-
-		SetLogger(newDefaultLogger())
-		SetLogLevel(LOG_LEVEL_INFO)
-	} else {
-		loggerLock.RUnlock()
-	}
+	defer loggerLock.RUnlock()
 
 	return globalLogger
 }
