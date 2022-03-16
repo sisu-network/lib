@@ -11,11 +11,11 @@ const levelVerbose = "verbose"
 var _ Logger = (*DNALogger)(nil)
 
 type LogDNAConfig struct {
-	Secret        string   `toml:"secret"`
-	AppName       string   `toml:"app_name"`
-	HostName      string   `toml:"host_name"`
-	FlushInterval duration `toml:"flush_interval"`
-	MaxBufferLen  int      `toml:"max_buffer_len"`
+	Secret        string   `toml:"secret" json:"secret,omitempty"`
+	AppName       string   `toml:"app_name" json:"app_name,omitempty"`
+	HostName      string   `toml:"host_name" json:"host_name,omitempty"`
+	FlushInterval duration `toml:"flush_interval" json:"flush_interval"`
+	MaxBufferLen  int      `toml:"max_buffer_len" json:"max_buffer_len,omitempty"`
 }
 
 type DNALogger struct {
