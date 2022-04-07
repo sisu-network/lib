@@ -128,58 +128,58 @@ func newDefaultLogger() *DefaultLogger {
 }
 
 func (logger *DefaultLogger) Info(a ...interface{}) {
-	logger.printWithTime(nil, "", a...)
+	printWithTime(nil, "", a...)
 }
 
 func (logger *DefaultLogger) Debug(a ...interface{}) {
-	logger.printWithTime(logger.debugColor, "", a...)
+	printWithTime(logger.debugColor, "", a...)
 }
 
 func (logger *DefaultLogger) Warn(a ...interface{}) {
-	logger.printWithTime(logger.warningColor, "", a...)
+	printWithTime(logger.warningColor, "", a...)
 }
 
 func (logger *DefaultLogger) Error(a ...interface{}) {
-	logger.printWithTime(logger.errorColor, "", a...)
+	printWithTime(logger.errorColor, "", a...)
 }
 
 func (logger *DefaultLogger) Verbose(a ...interface{}) {
-	logger.printWithTime(logger.verboseColor, "", a...)
+	printWithTime(logger.verboseColor, "", a...)
 }
 
 func (logger *DefaultLogger) HighVerbose(a ...interface{}) {
-	logger.printWithTime(logger.verboseColor, "", a...)
+	printWithTime(logger.verboseColor, "", a...)
 }
 
 func (logger *DefaultLogger) Critical(a ...interface{}) {
-	logger.printWithTime(nil, "", a...)
+	printWithTime(nil, "", a...)
 }
 
 func (logger *DefaultLogger) Infof(template string, a ...interface{}) {
-	logger.printWithTime(nil, template, a...)
+	printWithTime(nil, template, a...)
 }
 
 func (logger *DefaultLogger) Debugf(template string, a ...interface{}) {
-	logger.printWithTime(logger.debugColor, template, a...)
+	printWithTime(logger.debugColor, template, a...)
 }
 
 func (logger *DefaultLogger) Warnf(template string, a ...interface{}) {
-	logger.printWithTime(logger.warningColor, template, a...)
+	printWithTime(logger.warningColor, template, a...)
 }
 
 func (logger *DefaultLogger) Errorf(template string, a ...interface{}) {
-	logger.printWithTime(logger.errorColor, template, a...)
+	printWithTime(logger.errorColor, template, a...)
 }
 
 func (logger *DefaultLogger) Verbosef(template string, a ...interface{}) {
-	logger.printWithTime(logger.verboseColor, template, a...)
+	printWithTime(logger.verboseColor, template, a...)
 }
 
 func (logger *DefaultLogger) HighVerbosef(template string, a ...interface{}) {
-	logger.printWithTime(logger.verboseColor, template, a...)
+	printWithTime(logger.verboseColor, template, a...)
 }
 
-func (logger *DefaultLogger) printWithTime(c *color.Color, template string, a ...interface{}) {
+func printWithTime(c *color.Color, template string, a ...interface{}) {
 	now := time.Now().Format("15:04:05.00")
 	msg := getMessage(template, a...)
 	if c == nil {
