@@ -7,6 +7,7 @@ import (
 )
 
 const levelVerbose = "verbose"
+const levelHighVerbose = "highverbose"
 
 var _ Logger = (*DNALogger)(nil)
 
@@ -59,6 +60,10 @@ func (dna *DNALogger) Verbose(a ...interface{}) {
 	dna.logger.LogWithLevel(fmt.Sprintf("%v", a), levelVerbose)
 }
 
+func (dna *DNALogger) HighVerbose(a ...interface{}) {
+	dna.logger.LogWithLevel(fmt.Sprintf("%v", a), levelHighVerbose)
+}
+
 func (dna *DNALogger) Debug(a ...interface{}) {
 	dna.logger.Debug(fmt.Sprintf("%v", a))
 }
@@ -77,8 +82,12 @@ func (dna *DNALogger) Infof(template string, a ...interface{}) {
 
 func (dna *DNALogger) Verbosef(template string, a ...interface{}) {
 	dna.logger.LogWithLevel(fmt.Sprintf("%v", getMessage(template, a...)), levelVerbose)
-
 }
+
+func (dna *DNALogger) HighVerbosef(template string, a ...interface{}) {
+	dna.logger.LogWithLevel(fmt.Sprintf("%v", getMessage(template, a...)), levelHighVerbose)
+}
+
 func (dna *DNALogger) Debugf(template string, a ...interface{}) {
 	dna.logger.Debug(fmt.Sprintf("%v", getMessage(template, a...)))
 }

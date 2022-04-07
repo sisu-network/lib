@@ -147,6 +147,10 @@ func (logger *DefaultLogger) Verbose(a ...interface{}) {
 	logger.printWithTime(logger.verboseColor, "", a...)
 }
 
+func (logger *DefaultLogger) HighVerbose(a ...interface{}) {
+	logger.printWithTime(logger.verboseColor, "", a...)
+}
+
 func (logger *DefaultLogger) Critical(a ...interface{}) {
 	logger.printWithTime(nil, "", a...)
 }
@@ -168,6 +172,10 @@ func (logger *DefaultLogger) Errorf(template string, a ...interface{}) {
 }
 
 func (logger *DefaultLogger) Verbosef(template string, a ...interface{}) {
+	logger.printWithTime(logger.verboseColor, template, a...)
+}
+
+func (logger *DefaultLogger) HighVerbosef(template string, a ...interface{}) {
 	logger.printWithTime(logger.verboseColor, template, a...)
 }
 
