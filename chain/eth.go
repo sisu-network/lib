@@ -11,6 +11,7 @@ var (
 	ETH_CHAINS = map[string]bool{
 		"eth":             true,
 		"ropsten-testnet": true,
+		"goerli-testnet":  true,
 		"binance-testnet": true,
 		"ganache1":        true,
 		"ganache2":        true,
@@ -26,6 +27,7 @@ func initSigners() {
 
 	ethSigners["eth"] = etypes.NewEIP2930Signer(GetChainIntFromId("eth"))
 	ethSigners["ropsten-testnet"] = etypes.NewEIP2930Signer(GetChainIntFromId("ropsten-testnet"))
+	ethSigners["goerli-testnet"] = etypes.NewEIP2930Signer(GetChainIntFromId("goerli-testnet"))
 	ethSigners["binance-testnet"] = etypes.NewEIP2930Signer(GetChainIntFromId("binance-testnet"))
 	ethSigners["ganache1"] = etypes.NewEIP2930Signer(GetChainIntFromId("ganache1"))
 	ethSigners["ganache2"] = etypes.NewEIP2930Signer(GetChainIntFromId("ganache2"))
@@ -41,6 +43,8 @@ func GetChainIntFromId(chain string) *big.Int {
 		return big.NewInt(1)
 	case "ropsten-testnet":
 		return big.NewInt(3)
+	case "goerli-testnet":
+		return big.NewInt(420)
 	case "binance-testnet":
 		return big.NewInt(97)
 	case "xdai":
@@ -61,7 +65,8 @@ func GetChainIntFromId(chain string) *big.Int {
 
 func IsETHBasedChain(chain string) bool {
 	switch chain {
-	case "eth", "ropsten-testnet", "binance-testnet", "ganache1", "ganache2", "fantom-testnet", "polygon-testnet", "xdai":
+	case "eth", "ropsten-testnet", "goerli-testnet", "binance-testnet", "ganache1", "ganache2",
+		"fantom-testnet", "polygon-testnet", "xdai":
 		return true
 	}
 
