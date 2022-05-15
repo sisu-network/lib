@@ -15,7 +15,7 @@ type LogDNAConfig struct {
 	Secret        string   `toml:"secret" json:"secret,omitempty"`
 	AppName       string   `toml:"app_name" json:"app_name,omitempty"`
 	HostName      string   `toml:"host_name" json:"host_name,omitempty"`
-	FlushInterval duration `toml:"flush_interval" json:"flush_interval"`
+	FlushInterval Duration `toml:"flush_interval" json:"flush_interval"`
 	MaxBufferLen  int      `toml:"max_buffer_len" json:"max_buffer_len,omitempty"`
 	LogLocal      bool     `toml:"log_local" json:"log_local,omitempty"`
 }
