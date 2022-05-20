@@ -78,6 +78,11 @@ func Verbose(a ...interface{}) {
 	logger.Verbose(a...)
 }
 
+func HighVerbose(a ...interface{}) {
+	logger := getLogger()
+	logger.HighVerbose(a...)
+}
+
 func Critical(a ...interface{}) {
 	logger := getLogger()
 	logger.Critical(a...)
@@ -104,6 +109,11 @@ func Errorf(template string, a ...interface{}) {
 }
 
 func Verbosef(template string, a ...interface{}) {
+	logger := getLogger()
+	logger.Verbosef(template, a...)
+}
+
+func HighVerbosef(template string, a ...interface{}) {
 	logger := getLogger()
 	logger.Verbosef(template, a...)
 }
