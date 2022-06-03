@@ -8,7 +8,7 @@ import (
 )
 
 var (
-	ETH_CHAINS = map[string]bool{
+	ethChains = map[string]bool{
 		"eth":              true,
 		"ropsten-testnet":  true,
 		"goerli-testnet":   true,
@@ -82,7 +82,7 @@ func GetEthChainSigner(chain string) etypes.Signer {
 
 func GetSupportedEthChains() map[string]bool {
 	newMap := make(map[string]bool)
-	for k, v := range ETH_CHAINS {
+	for k, v := range ethChains {
 		newMap[k] = v
 	}
 

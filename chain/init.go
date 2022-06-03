@@ -6,7 +6,7 @@ func init() {
 	initSigners()
 
 	// Do Sanity checking to make sure that our functions do not miss any chain.
-	for chain, _ := range ETH_CHAINS {
+	for chain, _ := range ethChains {
 		id := GetChainIntFromId(chain)
 		if id == nil {
 			panic(fmt.Errorf("Cannot get chain id from %s", chain))
