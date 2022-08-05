@@ -27,17 +27,17 @@ var (
 func initSigners() {
 	ethSigners = make(map[string]etypes.Signer)
 
-	ethSigners["eth"] = etypes.NewEIP2930Signer(GetChainIntFromId("eth"))
-	ethSigners["ropsten-testnet"] = etypes.NewEIP2930Signer(GetChainIntFromId("ropsten-testnet"))
-	ethSigners["goerli-testnet"] = etypes.NewEIP2930Signer(GetChainIntFromId("goerli-testnet"))
-	ethSigners["binance-testnet"] = etypes.NewEIP2930Signer(GetChainIntFromId("binance-testnet"))
-	ethSigners["ganache1"] = etypes.NewEIP2930Signer(GetChainIntFromId("ganache1"))
-	ethSigners["ganache2"] = etypes.NewEIP2930Signer(GetChainIntFromId("ganache2"))
-	ethSigners["fantom-testnet"] = etypes.NewEIP2930Signer(GetChainIntFromId("fantom-testnet"))
-	ethSigners["xdai"] = etypes.NewEIP2930Signer(GetChainIntFromId("xdai"))
-	ethSigners["polygon-testnet"] = etypes.NewEIP2930Signer(GetChainIntFromId("polygon-testnet"))
-	ethSigners["arbitrum-testnet"] = etypes.NewEIP2930Signer(GetChainIntFromId("arbitrum-testnet"))
-	ethSigners["avaxc-testnet"] = etypes.NewEIP2930Signer(GetChainIntFromId("avaxc-testnet"))
+	ethSigners["eth"] = etypes.NewLondonSigner(GetChainIntFromId("eth"))
+	ethSigners["ropsten-testnet"] = etypes.NewLondonSigner(GetChainIntFromId("ropsten-testnet"))
+	ethSigners["goerli-testnet"] = etypes.NewLondonSigner(GetChainIntFromId("goerli-testnet"))
+	ethSigners["binance-testnet"] = etypes.NewLondonSigner(GetChainIntFromId("binance-testnet"))
+	ethSigners["ganache1"] = etypes.NewLondonSigner(GetChainIntFromId("ganache1"))
+	ethSigners["ganache2"] = etypes.NewLondonSigner(GetChainIntFromId("ganache2"))
+	ethSigners["fantom-testnet"] = etypes.NewLondonSigner(GetChainIntFromId("fantom-testnet"))
+	ethSigners["xdai"] = etypes.NewLondonSigner(GetChainIntFromId("xdai"))
+	ethSigners["polygon-testnet"] = etypes.NewLondonSigner(GetChainIntFromId("polygon-testnet"))
+	ethSigners["arbitrum-testnet"] = etypes.NewLondonSigner(GetChainIntFromId("arbitrum-testnet"))
+	ethSigners["avaxc-testnet"] = etypes.NewLondonSigner(GetChainIntFromId("avaxc-testnet"))
 }
 
 func GetChainIntFromId(chain string) *big.Int {
