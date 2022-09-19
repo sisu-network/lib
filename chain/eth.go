@@ -64,6 +64,10 @@ func GetChainIntFromId(chain string) *big.Int {
 		return big.NewInt(421611)
 	case "avaxc-testnet":
 		return big.NewInt(43113)
+
+	// Non-evm
+	case "cardano-testnet":
+		return big.NewInt(98723843487)
 	default:
 		log.Error("unknown chain:", chain)
 		return nil
@@ -95,6 +99,8 @@ func GetChainNameFromInt(bigI *big.Int) string {
 		return "ganache1"
 	case 189986:
 		return "ganache2"
+	case 98723843487:
+		return "cardano-testnet"
 	}
 
 	return ""
