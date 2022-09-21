@@ -47,7 +47,7 @@ func GetChainIntFromId(chain string) *big.Int {
 	case "ropsten-testnet":
 		return big.NewInt(3)
 	case "goerli-testnet":
-		return big.NewInt(420)
+		return big.NewInt(5)
 	case "binance-testnet":
 		return big.NewInt(97)
 	case "xdai":
@@ -81,7 +81,7 @@ func GetChainNameFromInt(bigI *big.Int) string {
 		return "eth"
 	case 3:
 		return "ropsten-testnet"
-	case 420:
+	case 5:
 		return "goerli-testnet"
 	case 100:
 		return "xdai"
