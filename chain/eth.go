@@ -74,38 +74,6 @@ func GetChainIntFromId(chain string) *big.Int {
 	}
 }
 
-func GetChainNameFromInt(bigI *big.Int) string {
-	id := bigI.Int64()
-	switch id {
-	case 1:
-		return "eth"
-	case 3:
-		return "ropsten-testnet"
-	case 5:
-		return "goerli-testnet"
-	case 100:
-		return "xdai"
-	case 97:
-		return "binance-testnet"
-	case 4002:
-		return "fantom-testnet"
-	case 80001:
-		return "polygon-testnet"
-	case 421611:
-		return "arbitrum-testnet"
-	case 43113:
-		return "avaxc-testnet"
-	case 189985:
-		return "ganache1"
-	case 189986:
-		return "ganache2"
-	case 98723843487:
-		return "cardano-testnet"
-	}
-
-	return ""
-}
-
 func IsETHBasedChain(chain string) bool {
 	switch chain {
 	case "eth", "ropsten-testnet", "goerli-testnet", "binance-testnet", "ganache1", "ganache2",
