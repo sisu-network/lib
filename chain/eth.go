@@ -68,6 +68,8 @@ func GetChainIntFromId(chain string) *big.Int {
 	// Non-evm
 	case "cardano-testnet":
 		return big.NewInt(98723843487)
+	case "solana-devnet":
+		return big.NewInt(2382734923)
 	default:
 		log.Error("unknown chain:", chain)
 		return nil
