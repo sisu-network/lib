@@ -55,6 +55,10 @@ func GetChainNameFromInt(bigI *big.Int) string {
 		return "cardano-testnet"
 	case 2382734923:
 		return "solana-devnet"
+	case 9872347238347:
+		return "lisk-testnet"
+	case 9872347238348:
+		return "lisk-mainnet"
 	}
 
 	return ""

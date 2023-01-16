@@ -2,7 +2,6 @@ package chain
 
 var (
 	LiskChains = map[string]bool{
-		"lisk-devnet":  true,
 		"lisk-testnet": true,
 		"lisk-mainnet": true,
 	}

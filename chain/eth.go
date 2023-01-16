@@ -70,6 +70,10 @@ func GetChainIntFromId(chain string) *big.Int {
 		return big.NewInt(98723843487)
 	case "solana-devnet":
 		return big.NewInt(2382734923)
+	case "lisk-testnet":
+		return big.NewInt(9872347238347)
+	case "lisk-mainnet":
+		return big.NewInt(9872347238348)
 	default:
 		log.Error("unknown chain:", chain)
 		return nil
